@@ -107,6 +107,7 @@ void ui_control () {
                 Display::set_row(row, buffer);
                 Serial.write(COMMAND_SEND_LINE);
                 Serial.write((uint8_t)0);
+                break;
             }
             case COMMAND_VERSION:
                 Serial.write((uint8_t)COMMAND_VERSION);

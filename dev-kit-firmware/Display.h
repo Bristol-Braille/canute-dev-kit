@@ -34,6 +34,10 @@ per cell:
 */
 
 void set_row (const uint8_t row, const uint8_t buffer[N_COLUMNS]) {
+    for (int i = 0; i < N_COLUMNS; ++i) {
+        Serial1.print(buffer[i]);
+    }
+    Serial1.println();
 }
 
 void set (const uint8_t buffer[]) {
@@ -43,6 +47,7 @@ void set (const uint8_t buffer[]) {
 }
 
 void setup() {
+    Serial1.begin(115200);
 }
 
 
