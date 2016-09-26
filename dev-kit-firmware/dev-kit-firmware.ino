@@ -8,11 +8,8 @@
 #define I2C_ADDRESS_BUTTONS 0x020
 #define INTERRUPT_BUTTONS digitalPinToInterrupt(7)
 
-#include "Lifts.h"
-#include "Racks.h"
 #include "Display.h"
 #include "protocol.h"
-#include "Diagnostic.h"
 
 void setup () {
     I2c.begin();
