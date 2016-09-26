@@ -75,34 +75,17 @@ void ui_control () {
                 Serial.write(COMMAND_N_ROWS);
                 Serial.write(N_ROWS);
                 break;
-            case COMMAND_SEND_DATA: {
-                uint8_t buffer[N_ROWS * N_COLUMNS];
-                for (uint8_t i = 0; i < (N_ROWS * N_COLUMNS / 2 / 64); ++i) {
-                    //chunk data into 64 byte packets and respond to each
-                    for (uint8_t j = 0; j < (64 * 2);) {
-                        if (Serial.available() > 0) {
-                            uint8_t c = Serial.read();
-                            buffer[(i * 64 * 2) + j]     = c & 0b111;
-                            buffer[(i * 64 * 2) + j + 1] = (c >> 3) & 0b111;
-                            j += 2;
-                        }
-                    }
-                    Serial.write((uint8_t)0);
-                }
-                Display::set(buffer);
-                Serial.write(COMMAND_SEND_DATA);
-                Serial.write((uint8_t)0);
+            case COMMAND_SEND_DATA:
                 break;
-            }
             case COMMAND_SEND_LINE: {
                 uint8_t buffer[N_COLUMNS];
+                while (!(Serial.available() >= 0)){}; //wait
                 uint8_t row = Serial.read();
                 for (uint8_t i = 0; i < (N_COLUMNS / 2); ++i) {
-                    if (Serial.available() > 0) {
-                        uint8_t c = Serial.read();
-                        buffer[i * 2]       = c & 0b111;
-                        buffer[(i * 2) + 1] = (c >> 3) & 0b111;
-                    }
+                    while (!(Serial.available() >= 0)){}; //wait
+                    uint8_t c = Serial.read();
+                    buffer[i * 2]       = c & 0b111;
+                    buffer[(i * 2) + 1] = (c >> 3) & 0b111;
                 }
                 Display::set_row(row, buffer);
                 Serial.write(COMMAND_SEND_LINE);

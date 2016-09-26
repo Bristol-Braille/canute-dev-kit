@@ -32,16 +32,29 @@ per cell:
 7 : 1 : 0b001
 
 */
+static uint8_t state[N_ROWS][N_COLUMNS] = {};
 
-void set_row (const uint8_t row, const uint8_t buffer[N_COLUMNS]) {
-    for (int i = 0; i < N_COLUMNS; ++i) {
-        Serial1.print(buffer[i]);
+void print_state() {
+    for (int row = 0; row < N_ROWS; ++row) {
+        for (int column = 0; column < N_COLUMNS; ++column) {
+            Serial1.print(state[row][column]);
+        }
+        Serial1.println();
     }
     Serial1.println();
 }
 
+void set_row (const uint8_t row, const uint8_t buffer[N_COLUMNS]) {
+    delay(200);
+    memset(state[row], 0, N_COLUMNS);
+    print_state();
+    delay(800);
+    memcpy(state[row], buffer, N_COLUMNS);
+    print_state();
+}
+
 void set (const uint8_t buffer[]) {
-    for (uint8_t row = 0; row < N_ROWS; row++) {
+    for (int row = 0; row < N_ROWS; row++) {
         set_row(row, &buffer[row * N_COLUMNS]);
     }
 }
