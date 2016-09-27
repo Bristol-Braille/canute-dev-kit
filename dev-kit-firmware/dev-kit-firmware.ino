@@ -76,7 +76,8 @@ void ui_control () {
                 Serial.write(COMMAND_N_ROWS);
                 Serial.write(N_ROWS);
                 break;
-            case COMMAND_SEND_DATA:
+            case COMMAND_SEND_PAGE:
+                //deprecated
                 break;
             case COMMAND_SEND_LINE: {
                 uint8_t buffer[N_COLUMNS];

@@ -3,7 +3,7 @@
 
 enum { COMMAND_N_CHARACTERS = 0x00
      , COMMAND_N_ROWS       = 0x01
-     , COMMAND_SEND_DATA    = 0x02
+     , COMMAND_SEND_PAGE    = 0x02
      , COMMAND_VERSION      = 0x03
      , COMMAND_SEND_ERROR   = 0x04
      , COMMAND_SEND_OK      = 0x05
