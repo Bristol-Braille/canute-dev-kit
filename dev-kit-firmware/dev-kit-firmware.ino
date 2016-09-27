@@ -16,6 +16,7 @@ void setup () {
     Keyboard.begin();
     attachInterrupt(INTERRUPT_BUTTONS, handle_buttons, FALLING);
     Display::setup();
+    Serial.begin(115200);
 }
 
 void loop () {
@@ -35,9 +36,9 @@ static void handle_buttons () {
        set_key(data, 6, '7');
        set_key(data, 7, '8');
        set_key(data, 8, '9');
-       set_key(data, 9, KEY_LEFT_ARROW);
+       set_key(data, 9, KEY_RIGHT_ARROW);
        set_key(data, 10, KEY_DOWN_ARROW);
-       set_key(data, 11, KEY_RIGHT_ARROW);
+       set_key(data, 11, KEY_LEFT_ARROW);
     }
     previous = data;
 }
