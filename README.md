@@ -4,10 +4,10 @@ Firmware and hardware to help with driver development of the Canute electronic B
 
 The dev kit consists of:
 
-    - An Arduino Leonardo or Pro Micro
-    - A custom button board that communicates via I2C
-    - 3 additional buttons wired to the custom button board
-    - A FTDI serial cable wired to the Arduino's hardware serial output
+- An Arduino Leonardo or Pro Micro
+- A custom button board that communicates via I2C
+- 3 additional buttons wired to the custom button board
+- A FTDI serial cable wired to the Arduino's hardware serial output
 
 ![photo of dev kit](photo.png)
 
@@ -32,7 +32,7 @@ Every command echos the command being responded to followed by any return data w
 On the status byte 0 indicates an ok status.
 
 | Command Name         |      Code | Description                                                        | Returns | 
-|----------------------+-----------+--------------------------------------------------------------------+---------|
+| -------------------- | --------- | ------------------------------------------------------------------ | ------- |
 | COMMAND_N_CHARACTERS |      0x00 | Number of characters pair row in the hardware                      | 2 byte  |
 | COMMAND_N_ROWS       |      0x01 | Number of rows on the display                                      | 2 byte  |
 | COMMAND_SEND_PAGE    |      0x02 | Deprecated                                                         | 2 byte  |
@@ -45,8 +45,9 @@ On the status byte 0 indicates an ok status.
 
 COMMAND_SEND_LINE is the most useful command. With the first byte you indicate the line number (0 - 8) your are trying to set followed by the Braille data. 
 
-| Command | Line number (0 - 8) | x number-of-characters of braille data |
-|    0x06 |                0x01 | ...                                    |
+|          | Command | Line number (0 - 8) | Braille Data |
+| -------- | ------- | ------------------- | ------------ |
+| Example: | 0x06    | 0x01                | ...          |
 
 Canute only supports 6-dot braille and it is encoded as integers 0-64 in a binary fashion.
 
