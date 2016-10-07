@@ -33,9 +33,9 @@ On the status byte 0 indicates an ok status.
 
 | Command Name         |      Code | Description                                                        | Returns | 
 | -------------------- | --------- | ------------------------------------------------------------------ | ------- |
-| COMMAND_N_CHARACTERS |      0x00 | Number of characters pair row in the hardware                      | 2 byte  |
-| COMMAND_N_ROWS       |      0x01 | Number of rows on the display                                      | 2 byte  |
-| COMMAND_SEND_PAGE    |      0x02 | Deprecated                                                         | 2 byte  |
+| COMMAND_N_CHARACTERS |      0x00 | Number of characters pair row in the hardware                      | 2 bytes  |
+| COMMAND_N_ROWS       |      0x01 | Number of rows on the display                                      | 2 bytes  |
+| COMMAND_SEND_PAGE    |      0x02 | Deprecated                                                         | 2 bytes  |
 | COMMAND_VERSION      |      0x03 | Outputs the firmware version                                       | 3 bytes |
 | COMMAND_SEND_ERROR   |      0x04 | Command the Canute to make an error sound (currently unused)       | nothing |
 | COMMAND_SEND_OK      |      0x05 | Command the Canute to make a confirmation sound (currently unused) | nothing |
@@ -51,11 +51,11 @@ COMMAND_SEND_LINE is the most useful command. With the first byte you indicate t
 
 Canute only supports 6-dot braille and it is encoded as integers 0-64 in a binary fashion.
 
-0b000000 is a space
-0b000001 is a dot-1 i.e. 'a' i.e. '⠁' 
-0b000010 is a dot-2 
-0b000011 is a dots 1 and 2 
-...
-0b111111 is a braille cell with every dot raised
+- 0b000000 is a space
+- 0b000001 is a dot-1 i.e. 'a' i.e. '⠁' 
+- 0b000010 is a dot-2 
+- 0b000011 is a dots 1 and 2 
+- ...
+- 0b111111 is a braille cell with every dot raised
 
 Effectively this means we are using unicode braille minus 10240.
